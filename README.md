@@ -1,21 +1,35 @@
 # CheapTravel
 
-_CheapTravel_ is an application I developed to find possible trips that I could have made with FlixBus starting from the two stations closest to my home, Cesena and Rimini.
+_CheapTravel_ is an application I developed in 2017 to find possible trips that I could have made with FlixBus starting from the two stations closest to my home, Cesena and Rimini.
 
-If you use the FlixBus site, you can find trips in just one way: you select two cities and the date, and the site give you all the trips available on that day. The only other thing you can do is checking all the route started from a city, that is a very usefull feature.
+If you use the FlixBus’ site, you can find trips in just one way: you select two cities and the date, and the site shows you all the trips available with those constraints. The only other thing you can do is checking all the routes started from a city.
 
 ![Interface](https://github.com/alessandrolombardini/CheapTravel/blob/main/img/Flixbus.PNG)
 
-This is enought if you need to travel from city to another one, but is not enought if you want to be inspired. In this flixbus doesn't work very well: it doesn't offer any kind of feature to find interesting trip you can do, for example, just to visit a city.
+These features are enough if you need to travel from one city to another one, but are not if you want to be inspired. On this Flixbus’ site doesn’t work very well: it doesn’t offer any kind of service to find exciting trips you can do.
 
-With _CheapTravel_ a feature of this kind is offer: you select the city you want to start from and the date. Stop. The system will give all the buses that start from that city that day. For each of them it offer the price, the departure time and the journey time.
+For example: if a have a free day, where can I go? Well, Flixbus doesn’t help in this.
 
-How do I interact with this application? Via Telegram.
+With _CheapTravel_ a service of this kind is offered: you select the city you want to start from and the date you want to leave, and the system will give you all the buses that start from that city that day. For each, it will be given to you the price, the departure time and the journey time. Very useful!
 
-I use this application to be inspaired: when I had a free day I checked the bot where I could go from the station nearest my home. Below is showed an example:
+Below is shown an example:
 
 ![Interface](https://github.com/alessandrolombardini/CheapTravel/blob/main/img/Telegram.jfif)
 
-## How I did
+As you can see by the image above, I used Telegram as interface. I used it for purposes like this one a lot of time, and I think is a really good solution is you don’t have a lot of resources and time available.
 
-I extracted the list of cities and connection by the page of map, and I use it to do some scraping of the pages. The application do HTTP Request and then analyses the responses.
+## How does it work?
+Scraping is the answer.
+
+Firstly I extracted the list of cities (codes and names) and their connection by the page of the map (the one showed above). All the codes were there, inside the HTML.
+
+Secondly, when you select a city of departure, some HTTP requests are made. There is no need to do a POST, it’s enough a GET. All the needed data, like departure city, arrival city and date, can be easily put inside the URL. For each city connected to the departure city is made an HTTP Request, which allows me to get the buses that cover that route on a specific date.
+
+
+Then every HTTP request is analyzed to extract from those all the data necessary, which are sent to the user via Telegram.
+
+## Notes
+
+This application is quite old, as I said before it was developed in 2017. The code, nowadays, doesn’t work anymore for different reasons.
+
+First of all, I think the URL format of web pages is changed. Secondly, the code is not fully complete. I don’t find anymore the complete code because, at that time, I didn’t use GitHub. I also developed this application in Python, which allows me to create an easier code than this one, which is in Java. I lost also that.
